@@ -1,0 +1,24 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+{% for group in chats %}
+    <h2>Cliente ID: {{ group.clientid }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mensaje</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chat in group.chats %}
+            <tr>
+                <td>{{ chat.content }}</td>
+                <td>{{ chat.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endblock %}

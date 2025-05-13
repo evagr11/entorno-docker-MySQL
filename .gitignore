@@ -1,0 +1,27 @@
+node_modules
+
+{% extends 'base.njk' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Mensaje</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for chat in chats %}
+        <tr>
+            <td>{{ chat.id }}</td>
+            <td>{{ chat.usuario }}</td>
+            <td>{{ chat.mensaje }}</td>
+            <td>{{ chat.fecha }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
