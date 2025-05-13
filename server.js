@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 app.get('/users', (req, res) => {
     db.query('SELECT * FROM users') 
         .then(([rows]) => {
-            res.render('users.njk', { title: 'Users', users: rows });
+            res.render('users.njk', { title: 'Usuarios', users: rows });
         })
         .catch(err => {
             console.error(err);
@@ -65,13 +65,22 @@ app.get('/chats', async (req, res) => {
     }
 });
 
-app.get('/btc-addresses', async (req, res) => {
+app.get('/query', (req, res) => {
+    res.render('query.njk', { title: 'Query SQL' });
+});
+
+app.post('/query', async (req, res) => {
+    const sql = req.body.sql; // Obtiene la consulta SQL desde el cuerpo de la solicitud
+    if (!sql) {
+        return res.status(400).json({ error: 'No SQL query provided' });
+    }
+
     try {
-        const [rows] = await db.query('SELECT * FROM btc_addresses');
-        res.render('btc_addresses.njk', { title: 'BTC Addresses', addresses: rows });
+        const [rows] = await db.query(sql); // Ejecuta la consulta SQL
+        res.json(rows); // Devuelve los resultados como JSON
     } catch (err) {
         console.error(err);
-        res.status(500).send('Error retrieving BTC addresses');
+        res.status(500).json({ error: 'Error executing query', details: err.message });
     }
 });
 

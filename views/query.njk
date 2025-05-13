@@ -1,0 +1,42 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+<style>
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .form-container textarea {
+        width: 80%;
+        height: 100px;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .form-container button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: black;
+        background-color: #f8d7da;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+</style>
+
+<h1 style="text-align: center;">Consulta SQL</h1>
+<div class="form-container">
+    <form method="POST" action="/query">
+        <textarea name="sql" placeholder="Escribe tu consulta SQL aquí..."></textarea>
+        <button type="submit">Ejecutar Consulta</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,26 +1,74 @@
 {% extends 'base.njk' %}
 
 {% block content %}
+<style>
+    h1 {
+        text-align: center; /* Centra el texto horizontalmente */
+        margin-bottom: 20px; /* Añade espacio debajo del encabezado */
+    }
+
+    h2 {
+        text-align: center; /* Centra el texto horizontalmente */
+        margin-bottom: 10px; /* Añade espacio debajo del encabezado */
+    }
+
+    .table-container {
+        display: flex;
+        justify-content: center; /* Centra la tabla horizontalmente */
+        align-items: center; /* Centra la tabla verticalmente si es necesario */
+        margin-top: 20px;
+        width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    }
+
+    table {
+        border-collapse: collapse; /* Elimina los espacios entre bordes */
+        width: 80%; /* Ajusta el ancho de la tabla */
+        text-align: left; /* Alinea el texto a la izquierda */
+    }
+
+    th, td {
+        border: 1px solid #ddd; /* Bordes de las celdas */
+        padding: 8px; /* Espaciado interno */
+    }
+
+    th {
+        background-color: #f8d7da; /* Fondo para los encabezados */
+        text-align: center; /* Centra el texto en los encabezados */
+    }
+
+    tr:nth-child(even) {
+        background-color: rgb(249, 249, 249); /* Fondo alternativo para filas */
+    }
+
+    tr:hover {
+        background-color: #ffe6f2; /* Fondo al pasar el cursor */
+    }
+</style>
+
 <h1>{{ title }}</h1>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Correo</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.login }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.email }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Contraseña</th>
+                <th>Admin</th>
+                <th>Etiqueta</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.login }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.is_admin }}</td>
+                <td>{{ user.tag }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
 

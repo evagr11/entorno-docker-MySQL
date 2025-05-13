@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
+{% extends 'base.njk' %}
+
+{% block content %}
+<style>
+    .center-container {
+        display: flex;
+        flex-direction: column; /* Coloca el header y el main en columna */
+        justify-content: center; /* Centra verticalmente */
+        align-items: center; /* Centra horizontalmente */
+        height: 80vh; /* Ocupa toda la altura de la pantalla */
+        text-align: center; /* Centra el texto */
+    }
+
+    header {
+        margin-bottom: 20px; /* Espaciado entre el header y el main */
+    }
+</style>
+<div class="center-container">
     <header>
         <h1>{{ title }}</h1>
     </header>
     <main>
         <p>Bienvenido a la página principal.</p>
     </main>
-</body>
-</html>
+</div>
+{% endblock %}
+
